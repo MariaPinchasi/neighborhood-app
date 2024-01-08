@@ -1,0 +1,247 @@
+@import 'config';
+@import 'utils';
+
+/* /////////////////////navbar////////////////////////////// */
+.navbar {
+    height: 7.5rem;
+    padding: 0 15rem ;
+    @include set-background($primary-color-light);
+    position:sticky;
+    z-index: 10;
+    top: 0;
+   @include flex(space-between);
+   h1{
+    padding: 2.5rem 0;
+    .logo {
+        color: $primary-color-dark;
+        font-size: 2.5rem;
+        font-family:$secondary-font;
+        letter-spacing: 0.4rem;
+    }
+   }  
+   .nav-links{
+    width: 50%;
+    height: 100%;
+    @include flex(flex-start);
+    li{
+        height: 100%;
+        width: 8rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 3rem 1rem 2rem 1rem;
+        background:$primary-color;
+        text-align: center;
+        a{
+            color:$font-light;   
+            &.active{
+                color:$font-dark;
+            }
+        }
+       
+        &:hover{
+            background-color:$primary-color-dark;
+        }
+    }
+   
+   }
+   .profile-menu{
+    display: none;
+    position: absolute;
+    top:6rem;
+    right: 9rem;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    background-color: $primary-color-dark;
+        .profile-links{
+            @include flex(center);
+            flex-direction: column;
+            .user-name{
+                color: $font-light;
+                font-size: 1.4rem;
+                font-weight: 600;
+                border-bottom: 1px dotted;           }
+            a{
+                color: $font-light;
+                font-size: 1.3rem;
+                padding: 0.5rem;
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+   } 
+        .display-menu{
+            display:block;
+        }   
+  }
+
+/* /////////////////////home////////////////////////////// */
+.show-case{
+    width: 85%;
+    margin: 0 auto;
+    @include flex(space-around);
+    img{
+        width: 60%;
+        height: 95%;
+        opacity: 0.8;
+    }
+}
+    /* /////////////////////form////////////////////////////// */
+.form-container{
+    // min-height: 69vh;
+    @include flex(flex-start);
+    flex-direction: column;
+    margin: 2rem 0;
+    h1 {
+        margin: 10rem 0 1.5rem 0;
+        font-size: 2.5rem;
+        font-family: $secondary-font;
+        letter-spacing: 0.3rem;
+        color: $primary-color-dark;          
+    }
+    h2{
+        font-family: $secondary-font;
+        color: $primary-color-dark;
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        padding:2rem;
+    }
+    .input-group {
+        input, select{
+            margin: 2rem 0;
+            display: block;
+            padding: 0.5rem;
+            @include border();
+            height: 4rem;
+            width: 38rem;
+            &:focus{
+                outline: none;
+                border-color: $primary-color;
+            }
+        }
+    }  
+    .error-message{
+        color: red;
+        font-size: 1.2rem;
+    }
+  }
+  .login-info{
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    a{
+        color: $primary-color;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}
+
+
+/* /////////////////////search////////////////////////////// */
+.search-container{
+    // min-height: 70vh;
+    width: 80%;
+    margin: 0 auto;
+    form{
+        width: 80%;
+        margin: 3rem auto;
+        @include flex(center);
+       
+            input{
+                width: 60rem;
+                height: 3rem;
+                padding: 0 1rem;
+                @include border();
+                &:focus{
+                    outline: none;
+                    border-color: $primary-color;
+                }
+            }
+            button{
+                @include border();
+                height: 4.5rem;
+                width: 4.5rem;
+                font-size: 1.5rem;
+                margin-left: 0.5rem;
+                @include set-background($primary-color);
+                cursor: pointer;
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+    }
+}
+/* /////////////////////service////////////////////////////// */
+%card{
+    width: 60%;
+    margin: 2rem auto;
+    padding: 2rem;
+    @include set-background($primary-color-lightest);
+    @include border();
+} 
+.services-list{
+        width: 100%;
+        .service-card{
+           @extend %card;
+            @include flex(space-around);
+            img{
+                width: 16rem;
+                height: 13rem;
+                border-radius: 2rem;
+                background-color: $primary-color-dark;
+            }
+            .service-content{
+                width: 60%;
+                margin-left: 2rem;
+                .service-label{
+                    width: fit-content;
+                    @include border();
+                    padding: 0.5rem;
+                    @include set-background($primary-color);
+                    margin-bottom: 1rem;
+                }
+                h2,h3{
+                    text-transform: capitalize;
+                }
+                h3,p{
+                    font-size: 1.2rem;
+                }
+            }           
+        }
+    }
+
+/* /////////////////////reviews////////////////////////////// */
+.reviews{
+    @extend %card;
+    h1{
+        color: $primary-color-dark;
+        margin-bottom: 1rem;
+    }
+    .review{
+        padding: 2rem;
+        h2,h3,h4{
+            text-transform: capitalize;
+        }
+        h4{
+            font-style: italic;
+        }
+        border-bottom: 1px $primary-color dotted
+    }
+}
+/* /////////////////////profile////////////////////////////// */
+.profile-container{
+    width: 70%;
+    margin: 0 auto;
+    h1{
+        text-transform: capitalize;
+        color: $primary-color-dark;
+    }
+}
+/* /////////////////////footer////////////////////////////// */
+.footer{
+    background-color: $primary-color-light;
+    height: 7rem;
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top: 3rem;
+    color: darken($primary-color,30%);
+}
