@@ -22,7 +22,7 @@ const ServiceSchema = new mongoose.Schema(
         phone: {
             type: String,
             maxlength: [12, 'Phone number can not be longer than 12 characters'],
-            minlength: [1, 'Phone number can not be shorter than 10 characters']
+            minlength: [9, 'Phone number can not be shorter than 9 characters']
         },
         averageRating: {
             type: Number,

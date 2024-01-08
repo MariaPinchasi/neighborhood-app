@@ -11,14 +11,14 @@ const useServiceForm = () => {
         service: "",
         description: "",
         phone: "",
-        photo: "",
+        // photo: "",
     });
 
     const [errors, setErrors] = useState({
         service: null,
         description: null,
         phone: null,
-        photo: null,
+        // photo: null,
     });
 
     const formData = [
@@ -38,14 +38,14 @@ const useServiceForm = () => {
             value: serviceData.phone,
             error: errors.phone,
         },
-        {
-            id: '3',
-            label: 'Photo',
-            type: 'text',
-            name: 'photo',
-            value: serviceData.photo,
-            error: errors.photo,
-        },
+        // {
+        //     id: '3',
+        //     label: 'Photo',
+        //     type: 'text',
+        //     name: 'photo',
+        //     value: serviceData.photo,
+        //     error: errors.photo,
+        // },
     ]
     const handleChange = (e) => {
         setServiceData({
@@ -80,8 +80,8 @@ const useServiceForm = () => {
             newErrors.description = "Description can't be longer than 500 characters";
             isValid = false;
         }
-        if (!serviceData.phone || serviceData.phone < 10 || serviceData.phone > 12) {
-            newErrors.phone = "Please add a phone between 10 and 12 integers";
+        if (!serviceData.phone || serviceData.phone < 9 || serviceData.phone > 12) {
+            newErrors.phone = "Please add a phone between 9 and 12 integers";
             isValid = false;
         }
 
