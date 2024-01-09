@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useServiceForm from '../hooks/useServiceForm';
 import Form from '../components/Form';
 import { useParams } from 'react-router-dom';
 import { getService } from '../api/api';
 import { handleError } from '../utils';
+import ImageUpload from '../components/ImageUpload';
 
 const ServiceForm = () => {
     const { serviceId } = useParams();
+
     const { handleChange, handleSubmit, formData, setServiceData, errors, handleServiceChange } = useServiceForm();
     const btnText = serviceId ? 'Edit Service' : 'Add Service';
 
@@ -24,7 +26,6 @@ const ServiceForm = () => {
     useEffect(() => {
         fetchService(serviceId);
     }, [serviceId]);
-
     return (
         <section className='form-container'>
             <h2>My Service</h2>

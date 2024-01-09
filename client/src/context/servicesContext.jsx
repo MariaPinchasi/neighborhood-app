@@ -1,16 +1,24 @@
 import { createContext, useEffect, useState } from "react";
-import { createService, deleteService, getAllServices, getService, getUserServices, updateService } from "../api/api.js"
+import { createService, deleteService, getAllServices, getService, getUserServices, updateService, uploadServiceImg } from "../api/api.js"
 import { handleError, showToast } from "../utils/index.js";
-import { useGlobalUserContext } from "../hooks/useGlobalUserContext.js";
 export const AppServicesContext = createContext();
 
 export const AppServicesProvider = ({ children }) => {
-    const { user } = useGlobalUserContext();
 
     const [services, setServices] = useState([]);
     const [userServices, setUserServices] = useState([]);
     const [service, setService] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalServiceId, setModalServiceId] = useState();
+
+    const openModal = (id) => {
+        setIsModalOpen(true);
+        setModalServiceId(id);
+    };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     const fetchServices = async (query) => {
         try {
@@ -42,27 +50,38 @@ export const AppServicesProvider = ({ children }) => {
         }
     }
 
-    const handleServiceEdit = async (service, serviceId) => {
+    const handleServiceEdit = async (description, phone, serviceId) => {
         try {
-            await updateService(service, serviceId);
+            await updateService({ description, phone }, serviceId);
             showToast('Service successfully updated');
-            fetchServices();
+            fetchUserServices();
         } catch (err) {
             handleError(err, "Error while updating the service");
         }
     };
+
+    const handleImageUpload = async (serviceId, file) => {
+        try {
+            await uploadServiceImg(serviceId, file);
+            showToast('Image successfully uploaded');
+            fetchUserServices();
+        } catch (err) {
+            handleError(err, "Error while uploading the image");
+        }
+    };
+
     const handleServiceDeletion = async (serviceId) => {
         try {
             await deleteService(serviceId);
             showToast('Service successfully deleted');
-            fetchServices();
+            fetchUserServices();
         } catch (err) {
             handleError(err, "Error while deleting the service");
         }
     };
-    const handleServiceAddition = async (service) => {
+    const handleServiceAddition = async (service, description, phone) => {
         try {
-            await createService(service);
+            await createService({ service, description, phone });
             showToast('Service successfully added');
             fetchServices();
         } catch (err) {
@@ -82,9 +101,14 @@ export const AppServicesProvider = ({ children }) => {
                 fetchService,
                 handleServiceAddition,
                 handleServiceDeletion,
+                handleImageUpload,
                 handleServiceEdit,
                 fetchUserServices,
-                userServices
+                userServices,
+                isModalOpen,
+                openModal,
+                closeModal,
+                modalServiceId
             }}>
             {children}
         </AppServicesContext.Provider>

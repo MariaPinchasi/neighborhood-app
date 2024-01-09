@@ -5,7 +5,7 @@ import { FaPhone } from 'react-icons/fa';
 const ServiceCard = ({ _id, service, name, description, phone, photo, averageRating }) => {
     return (
         <Link to={`/services/${_id}`} className='service-card'>
-            <img alt='service img' src={photo} />
+            <img alt='service img' src={`${import.meta.env.VITE_BASE_URL}/uploads/${photo}`} />
             <div className='service-content'>
                 <h3 className='service-label'>{`${service}`}</h3>
                 <h2>{`${name}`}</h2>

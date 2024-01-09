@@ -37,6 +37,13 @@ export const getService = async (serviceId) => {
 export const updateService = async (service, serviceId) => {
     await API.put(`${URL}/services/${serviceId}`, service);
 }
+export const uploadServiceImg = async (serviceId, file) => {
+    await API.put(`${URL}/services/${serviceId}/photo`, file, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    });
+}
 
 export const createService = async (service) => {
     await API.post(`${URL}/services`, service);
@@ -45,6 +52,7 @@ export const createService = async (service) => {
 export const deleteService = async (serviceId) => {
     await API.delete(`${URL}/services/${serviceId}`);
 }
+
 
 // reviews
 export const getReviews = async (serviceId) => {

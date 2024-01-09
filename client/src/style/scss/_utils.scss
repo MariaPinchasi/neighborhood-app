@@ -12,6 +12,7 @@
     padding: 0.8rem 1.2rem;
     border-radius: 0.6rem;
     border: none;
+    text-align: center;
     cursor: pointer;
     @include set-background($primary-color-dark);
     &:hover {
@@ -20,19 +21,26 @@
   }
 .btn-primary {
     @extend %btn;
-    margin-left: 45%;
-    margin-bottom: 1rem;
+    display: block;
+    width:fit-content;
+    margin: 1rem auto;
 }
 .btn-secondary {
     @extend %btn;
     margin-left: 80%;
 }
+.btn-wide {
+    @extend %btn;
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
 .btn-choices {
     @extend %btn;
     margin: 2rem 2rem;
     @include set-background($primary-color);
-
 }
+
 .btn-user {
     @extend %btn;
     @include set-background($primary-color);

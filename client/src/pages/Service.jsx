@@ -33,7 +33,7 @@ const Service = () => {
     return (
         <div className='services-list'>
             <article className='service-card'>
-                <img alt='service img' src={photo} />
+                <img alt='service img' src={`${import.meta.env.VITE_BASE_URL}/uploads/${photo}`} />
                 <div className='service-content'>
                     <h3 className='service-label'>{`${serviceType}`}</h3>
                     <h2>{`${name}`}</h2>

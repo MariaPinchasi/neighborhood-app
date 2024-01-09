@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 import MyServices from '../components/MyServices';
 import MyFavorites from '../components/MyFavorites';
+import { useGlobalServicesContext } from '../hooks/useGlobalServicesContext';
+import ImageUpload from '../components/ImageUpload';
+
+const viewOptions = ['My Services', 'My Favorites'];
 
 const Profile = () => {
     const { user } = useGlobalUserContext();
-    const viewOptions = ['My Services', 'My Favorites'];
     const [current, setCurrent] = useState(viewOptions[0]);
+    const { modalServiceId } = useGlobalServicesContext();
 
     return (
         <main className='profile-container'>
@@ -19,6 +23,9 @@ const Profile = () => {
                 })};
             </div>
             {current === 'My Services' && <MyServices />}
+            {current === 'My Services' && <ImageUpload serviceId={modalServiceId} />}
+
+
             {current === 'My Favorites' && <MyFavorites />}
         </main>
     )

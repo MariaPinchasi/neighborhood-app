@@ -9,7 +9,7 @@ const ReviewForm = () => {
     const { reviewId } = useParams();
     const { handleChange, handleSubmit, formData, setReviewData } = useReviewForm();
     const btnText = reviewId ? 'Edit Review' : 'Add Review';
-
+    
     const fetchReview = async (reviewId) => {
         if (reviewId) {
             try {
@@ -23,6 +23,7 @@ const ReviewForm = () => {
 
     useEffect(() => {
         fetchReview(reviewId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reviewId]);
 
     return (

@@ -11,15 +11,15 @@ const useServiceForm = () => {
         service: "",
         description: "",
         phone: "",
-        // photo: "",
+        photo: "",
     });
 
     const [errors, setErrors] = useState({
         service: null,
         description: null,
         phone: null,
-        // photo: null,
     });
+
 
     const formData = [
         {
@@ -38,14 +38,6 @@ const useServiceForm = () => {
             value: serviceData.phone,
             error: errors.phone,
         },
-        // {
-        //     id: '3',
-        //     label: 'Photo',
-        //     type: 'text',
-        //     name: 'photo',
-        //     value: serviceData.photo,
-        //     error: errors.photo,
-        // },
     ]
     const handleChange = (e) => {
         setServiceData({
@@ -64,6 +56,7 @@ const useServiceForm = () => {
             service: selected.value
         })
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let isValid = true;
@@ -89,10 +82,10 @@ const useServiceForm = () => {
 
         if (isValid) {
             if (!serviceId) {
-                handleServiceAddition(serviceData);
+                handleServiceAddition(serviceData.service, serviceData.description, serviceData.phone);
             }
             else {
-                handleServiceEdit(serviceData, serviceId);
+                handleServiceEdit(serviceData.description, serviceData.phone, serviceId);
             }
             navigate(`/profile`);
         }
@@ -104,7 +97,8 @@ const useServiceForm = () => {
         handleSubmit,
         formData,
         setServiceData,
-        errors
+        errors,
+
     }
 }
 
