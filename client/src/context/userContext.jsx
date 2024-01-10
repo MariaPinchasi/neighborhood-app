@@ -24,7 +24,7 @@ export const AppUserProvider = ({ children }) => {
         try {
             const userData = await loginUser(email, password);
             setUser(userData);
-            navigate('/search');
+            navigate('/');
         } catch (err) {
             handleError(err, 'Error related to user login');
         }
