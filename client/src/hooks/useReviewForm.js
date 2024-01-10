@@ -41,7 +41,7 @@ const useReviewForm = () => {
         {
             id: '3',
             label: 'Rating',
-            type: 'number',
+            type: 'range',
             name: 'rating',
             value: reviewData.rating,
             error: errors.rating,

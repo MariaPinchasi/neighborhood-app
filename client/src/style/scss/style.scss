@@ -107,7 +107,7 @@
         padding:2rem;
     }
     .input-group {
-        input, select{
+        input, select, textarea{
             margin: 2rem 0;
             display: block;
             padding: 0.5rem;
@@ -118,6 +118,9 @@
                 outline: none;
                 border-color: $primary-color;
             }
+        }
+        textarea{
+            height: 10rem;
         }
     }
    

@@ -16,10 +16,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        req.user = await User.findById(decoded.id).populate({
-            path: 'location',
-            select: 'city neighborhood'
-        });
+        req.user = await User.findById(decoded.id);
         next();
     } catch (err) {
         return next(new ErrorResponse('Not authorized to access this route', 401));
