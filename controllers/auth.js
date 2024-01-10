@@ -77,7 +77,6 @@ const sendTokenResponse = (user, statusCode, res) => {
     };
 
     if (process.env.NODE_ENV === 'production') {
-        options.domain = 'https://neighborhood-api.onrender.com'
         options.secure = true;
         options.sameSite = 'None';
     }
