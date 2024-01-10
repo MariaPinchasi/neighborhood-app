@@ -47,7 +47,7 @@ exports.logout = asyncHandler(async (req, res, next) => {
         httpOnly: true,
         secure: isProduction,
         sameSite: isProduction ? 'None' : 'Lax',
-        path: '/'
+
     });
 
     res.status(200).json({
