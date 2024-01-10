@@ -74,12 +74,14 @@ const sendTokenResponse = (user, statusCode, res) => {
             Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000,
         ),
         httpOnly: true,
+        secure: true,
+        sameSite: 'None'
     };
 
-    if (process.env.NODE_ENV === 'production') {
-        options.secure = true;
-        options.sameSite = 'None';
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //     options.secure = true;
+    //     options.sameSite = 'None';
+    // }
 
     res.status(statusCode).cookie('token', token, options).json({
         success: true,
