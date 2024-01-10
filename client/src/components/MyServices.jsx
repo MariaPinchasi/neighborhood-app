@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
 
 const MyServices = () => {
-    const { fetchUserServices, userServices, isLoading, openModal, modalServiceId } = useGlobalServicesContext();
+    const { fetchUserServices, userServices, isLoading, openModal, isModalOpen, handleServiceDeletion, modalServiceId } = useGlobalServicesContext();
 
     useEffect(() => {
         fetchUserServices();
-    }, [userServices]);
+    }, []);
 
     if (isLoading) {
         return (
@@ -25,11 +25,15 @@ const MyServices = () => {
                 return (
                     <div key={singleService._id}>
                         <ServiceCard {...singleService} />
-                        <Link to={`/services/${singleService._id}/editService`} className="btn-primary"> Edit Service</Link>
-                        <button onClick={() => { openModal(singleService._id) }} className="btn-primary"> Upload Image</button>
+                        <Link to={`/services/${singleService._id}/editService`} className="btn-wide bg-primary"> Edit Service</Link>
+                        <button onClick={() => { openModal(singleService._id) }} className="btn-wide bg-secondary"> Upload Image</button>
+                        <button className='btn-wide bg-red' onClick={() => { handleServiceDeletion(singleService._id) }}>Delete Service</button>
+
                     </div>
                 )
             })}
+            <ImageUpload serviceId={modalServiceId} />
+
         </div>
     )
 }

@@ -12,8 +12,8 @@ const Input = ({ label, type, name, value, error, handleChange }) => {
     if (name === 'rating') {
         return (
             <div className="input-group">
+                <label htmlFor={name}>{`Rating: ${value}/10`}</label>
                 <input type={type} min='0' max='10' name={name} placeholder={label} value={value} onChange={handleChange} />
-                <label htmlFor={name}>{value}</label>
                 <div className="error-message">{error}</div>
             </div>
         )

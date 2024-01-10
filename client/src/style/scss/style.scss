@@ -122,6 +122,12 @@
         textarea{
             height: 10rem;
         }
+        label{
+            font-family: $secondary-font;
+            font-size: 1.5rem;
+            font-weight: 600;
+            
+        }
     }
    
     .error-message{
@@ -282,8 +288,21 @@
         h2,h3,h4{
             text-transform: capitalize;
         }
+        h3{
+            background-color: rgb(198, 247, 177);
+            width: 4rem;
+            height: 3rem;
+            padding: 0.5rem;
+            text-align: center;
+            @include border();
+            border-radius: 40%;
+
+        }
         h4{
             font-style: italic;
+        }
+        p{
+            font-size: 1.2rem;
         }
         border-bottom: 1px $primary-color dotted
     }

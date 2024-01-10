@@ -18,6 +18,8 @@ export const AppServicesProvider = ({ children }) => {
     };
     const closeModal = () => {
         setIsModalOpen(false);
+        setModalServiceId();
+
     };
 
     const fetchServices = async (query) => {

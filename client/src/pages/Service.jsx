@@ -52,13 +52,13 @@ const Service = () => {
                     return (
                         <article className='review' key={_id}>
                             <h2>{title}</h2>
-                            <h3>{`Rating: ${rating}`}</h3>
+                            <h3>{`${rating}/10`}</h3>
                             <p>{text}</p>
                             <h4>{reviewUser.name}</h4>
                             {reviewUser._id === user?._id &&
                                 <>
-                                    <Link to={`reviews/${_id}`} className="btn-primary">Edit Review</Link>
-                                    <button className='btn-primary' onClick={() => { handleReviewDeletion(serviceId, _id) }}>Delete Review</button>
+                                    <Link to={`reviews/${_id}`} className="btn-wide bg-primary">Edit Review</Link>
+                                    <button className='btn-wide bg-red' onClick={() => { handleReviewDeletion(serviceId, _id) }}>Delete Review</button>
                                 </>
                             }
                         </article>
