@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
 
 const MyServices = () => {
-    const { fetchUserServices, userServices, isLoading, openModal, isModalOpen, handleServiceDeletion, modalServiceId } = useGlobalServicesContext();
+    const { fetchUserServices, userServices, isLoading, openModal, handleServiceDeletion, modalServiceId } = useGlobalServicesContext();
 
     useEffect(() => {
         fetchUserServices();
