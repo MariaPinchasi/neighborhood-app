@@ -25,7 +25,7 @@ router.route('/userServices').get(protect, getUserServices);
 
 router
     .route('/')
-    .get(protect, getServices)
+    .get(getServices)
     .post(protect, createService);
 
 router
