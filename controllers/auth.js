@@ -40,9 +40,14 @@ exports.login = asyncHandler(async (req, res, next) => {
 // @route     GET /api/v1/auth/logout
 // @access    Public
 exports.logout = asyncHandler(async (req, res, next) => {
+    const isProduction = process.env.NODE_ENV === 'production';
+
     res.cookie('token', 'none', {
         expires: new Date(Date.now() + 10 * 1000),
         httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? 'None' : 'Lax',
+        path: '/'
     });
 
     res.status(200).json({
