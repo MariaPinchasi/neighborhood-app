@@ -1,0 +1,60 @@
+   /* /////////////////////form////////////////////////////// */
+   .form-container{
+    // min-height: 69vh;
+    @include flex(flex-start);
+    flex-direction: column;
+    margin: 2rem 0;
+    h1 {
+        margin: 10rem 0rem 1.5rem 0;
+        padding: 0 2rem;
+        font-size: 2.5rem;
+        line-height: 3rem;
+        font-family: $secondary-font;
+        letter-spacing: 0.3rem;
+        color: $primary-color-dark;          
+    }
+    h2{
+        font-family: $secondary-font;
+        color: $primary-color-dark;
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        padding:2rem;
+    }
+    .input-group {
+        input, select, textarea{
+            margin: 2rem 0;
+            display: block;
+            padding: 0.5rem;
+            @include border();
+            height: 4rem;
+            width: 38rem;
+            &:focus{
+                outline: none;
+                border-color: $primary-color;
+            }
+        }
+        textarea{
+            height: 10rem;
+        }
+        label{
+            font-family: $secondary-font;
+            font-size: 1.5rem;
+            font-weight: 600;
+            
+        }
+    }
+   
+    .error-message{
+        color: red;
+        font-size: 1.2rem;
+    }
+  }
+  .login-info{
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    a{
+        color: $primary-color;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,34 @@
+ 
+/* /////////////////////search////////////////////////////// */
+.search-container{
+    // min-height: 70vh;
+    width: 80%;
+    margin: 0 auto;
+    form{
+        width: 80%;
+        margin: 3rem auto;
+        @include flex(center);
+            input{
+                width: 60rem;
+                height: 3rem;
+                padding: 0 1rem;
+                @include border();
+                &:focus{
+                    outline: none;
+                    border-color: $primary-color;
+                }
+            }
+            button{
+                @include border();
+                height: 4.5rem;
+                width: 4.5rem;
+                font-size: 1.5rem;
+                margin-left: 0.5rem;
+                @include set-background($primary-color);
+                cursor: pointer;
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+    }
+}

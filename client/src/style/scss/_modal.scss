@@ -1,0 +1,64 @@
+ 
+/* /////////////////////modal////////////////////////////// */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    .modal-container {
+        background: $primary-color-lightest;
+        width: 60vw;
+        height: 60vh;
+        text-align: center;
+        display: grid;
+        place-items: center;
+        position: relative;
+        @include border();
+        .image-input{ 
+            img{
+                width: 18rem;
+                height: 13rem;
+                border-radius: 2rem;
+                margin-right: 2rem;
+                @include border();
+            }
+            .input-file{
+                display: block;
+            }
+            button{
+                width:38rem;
+            }
+        }  
+        .close-modal-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            background: transparent;
+            border-color: transparent;
+            cursor: pointer;
+            color: $primary-color-dark;
+        }
+      }
+      .delete{
+        height: fit-content;
+        width: fit-content;
+        padding: 2rem;
+      }
+  }
+  .show-modal {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+    transition-property: opacity;
+    transition-duration: 1.5s;
+  }
+
+ 

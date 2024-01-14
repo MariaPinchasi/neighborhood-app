@@ -1,0 +1,84 @@
+/* /////////////////////navbar////////////////////////////// */
+.navbar {
+    height: 7.5rem;
+    padding: 0 15rem ;
+    @include set-background($primary-color-light);
+    position:sticky;
+    z-index: 10;
+    top: 0;
+   @include flex(space-between);
+   h1{  
+    padding: 2.5rem 0;
+    .logo {
+        gap: 1rem;
+        @include flex(flex-start);
+        color: $primary-color-dark;
+        font-size: 2.5rem;
+        font-family:$secondary-font;
+        letter-spacing: 0.4rem; 
+    }
+   }  
+    .nav-links {
+        @include flex(flex-start);
+        width: 50%;
+        height: 100%;
+        li a {
+            display: block;
+            height: 100%;
+            width: 8rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            @include set-background($primary-color);
+            padding: 2.8rem 0.8rem;
+            text-align: center;
+            &:hover,
+            &.active {
+            background-color: $primary-color-dark;
+            color: $primary-color-lightest;
+            }
+        }  
+    }
+
+   .profile-menu{
+    display: none;
+    position: absolute;
+    top:6rem;
+    right: 9rem;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    background-color: $primary-color-dark;
+        .profile-links{
+            @include flex(center);
+            flex-direction: column;
+            .user-name{
+                color: $font-light;
+                font-size: 1.4rem;
+                font-weight: 600;
+                border-bottom: 1px dotted;           }
+            a{
+                color: $font-light;
+                font-size: 1.3rem;
+                padding: 0.5rem;
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+   } 
+        .display-menu{
+            display:block;
+        }   
+  }
+
+/* /////////////////////home////////////////////////////// */
+.show-case{
+    width: 85%;
+    height: 74vh;
+    margin: 0 auto;
+    @include flex(space-around);
+    img{
+        width: 60%;
+        height: 95%;
+        opacity: 0.8;
+    }
+}

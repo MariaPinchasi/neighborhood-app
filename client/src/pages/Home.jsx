@@ -23,9 +23,8 @@ const Home = () => {
             </section>
                 :
                 <section className="form-container">
-                    <h1>{`${user.name.toUpperCase()}, `}WELCOME TO YOUR NEIGHBORHOOD</h1>
+                    <h1>{`${user.name.toUpperCase()}, `}Welcome to Your Neighborhood</h1>
                 </section>}
-
         </div>
     )
 }

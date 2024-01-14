@@ -2,7 +2,7 @@ export const selectStyle = {
     control: (baseStyles, state) => ({
         ...baseStyles,
         borderColor: state.isFocused ? 'rgb(75, 172, 211)' : ' rgb(215, 236, 246)',
-        width: '60rem',
+        width: '50vw',
         fontSize: '1.5rem'
     }),
     option: (baseStyles, state) => ({

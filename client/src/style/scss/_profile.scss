@@ -1,0 +1,16 @@
+  
+/* /////////////////////profile////////////////////////////// */
+.profile-container{
+    width: 70%;
+    margin: 0 auto;
+    h1{
+        text-transform: capitalize;
+        color: $primary-color-dark;
+    }
+}
+.empty-message{
+    padding: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+    font-style: italic;
+}

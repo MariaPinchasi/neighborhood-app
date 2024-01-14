@@ -1,0 +1,40 @@
+
+/* /////////////////////service////////////////////////////// */
+%card{
+    width: 60%;
+    margin: 2rem auto;
+    padding: 2rem;
+    @include set-background($primary-color-lightest);
+    @include border();
+} 
+.services-list{
+        width: 100%;
+        .service-card{
+           @extend %card;
+            @include flex(space-around);
+            img{
+                width: 16rem;
+                height: 13rem;
+                border-radius: 2rem;
+                background-color: $primary-color-dark;
+            }
+            .service-content{
+                width: 60%;
+                margin-left: 2rem;
+                .service-label{
+                    width: fit-content;
+                    @include border();
+                    padding: 0.5rem;
+                    @include set-background($primary-color);
+                    margin-bottom: 1rem;
+                }
+                h2,h3{
+                    text-transform: capitalize;
+                }
+                h3,p,h4{
+                    font-size: 1.2rem;
+                }
+
+            }           
+        }
+    }

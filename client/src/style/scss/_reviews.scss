@@ -1,0 +1,23 @@
+
+
+/* /////////////////////reviews////////////////////////////// */
+.reviews{
+    @extend %card;
+    h1{
+        color: $primary-color-dark;
+        margin-bottom: 1rem;
+    }
+    .review{
+        padding: 2rem;
+        h2,h3,h4{
+            text-transform: capitalize;
+        }
+        h4{
+            font-style: italic;
+        }
+        p{
+            font-size: 1.2rem;
+        }
+        border-bottom: 1px $primary-color dotted
+    }
+}
