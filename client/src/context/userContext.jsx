@@ -1,11 +1,14 @@
 import { createContext, useEffect, useState } from "react";
-import { addToFavorite, deleteFromFavorite, getUser, loginUser, logoutUser, registerUser } from "../api/api";
+import { addToFavorite, deleteFromFavorite, deleteUser, getUser, getUsers, loginUser, logoutUser, registerUser } from "../api/api";
 import { handleError, showToast } from "../utils/index.js";
 
 export const AppUserContext = createContext();
 
 export const AppUserProvider = ({ children }) => {
     const [user, setUser] = useState();
+    const [users, setUsers] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
     const loadUser = async () => {
         try {
             const userData = await getUser();
@@ -48,6 +51,28 @@ export const AppUserProvider = ({ children }) => {
             handleError(err, 'Error related to user logout');
         }
     };
+
+
+    const fetchUsers = async () => {
+        try {
+            const usersData = await getUsers();
+            setUsers(usersData);
+            setIsLoading(false);
+        } catch (err) {
+            handleError(err, 'Error while getting the users');
+        }
+    };
+
+    const handleUserDeletion = async (userId) => {
+        try {
+            await deleteUser(userId);
+            showToast('User successfully deleted');
+            fetchUsers();
+        } catch (err) {
+            handleError(err, "Error while deleting the user");
+        }
+    };
+
     const handleFavoriteAddition = async (serviceId) => {
         try {
             await addToFavorite(serviceId);
@@ -67,6 +92,7 @@ export const AppUserProvider = ({ children }) => {
         }
     };
 
+
     return (
         <AppUserContext.Provider
             value={{
@@ -74,6 +100,8 @@ export const AppUserProvider = ({ children }) => {
                 login,
                 register,
                 logout,
+                fetchUsers,
+                handleUserDeletion,
                 handleFavoriteAddition,
                 handleFavoriteDeletion
             }}>

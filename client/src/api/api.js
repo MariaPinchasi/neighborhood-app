@@ -99,7 +99,13 @@ export const getUser = async () => {
 
 }
 // users
-
+export const getUsers = async () => {
+    const res = await API.get(`${URL}/users`);
+    return res.data.data;
+}
+export const deleteUser = async (userId) => {
+    await API.delete(`${URL}/users/${userId}`);
+}
 export const addToFavorite = async (id) => {
     await API.put(`${URL}/users/addFavorites`, { id });
 }

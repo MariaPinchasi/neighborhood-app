@@ -3,6 +3,45 @@ const Service = require('../models/Service');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 
+
+// @desc      Get all users
+// @route     GET /api/v1/users
+// @access    Private
+exports.getUsers = asyncHandler(async (req, res, next) => {
+    const users = await User.find();
+
+    return res.status(200).json({
+        success: true,
+        count: users.length,
+        data: users
+    });
+});
+
+
+// @desc      Delete user
+// @route     DELETE /api/v1/users/:userId
+// @access    Private
+exports.deleteUser = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        return next(
+            new ErrorResponse(`No user with the id of ${req.params.id}`, 404)
+        );
+    }
+
+    // Make sure user is admin
+    if (req.user.role !== 'admin') {
+        return next(new ErrorResponse(`Not authorized to delete this user`, 401));
+    }
+
+    await user.deleteOne();
+
+    res.status(200).json({
+        success: true,
+        data: {}
+    });
+});
 // @desc      add Service to users favorites
 // @route     PUT /api/v1/users/addFavorites
 // @access    Private
