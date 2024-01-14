@@ -98,3 +98,12 @@ export const getUser = async () => {
     return res.data.data;
 
 }
+// users
+
+export const addToFavorite = async (id) => {
+    await API.put(`${URL}/users/addFavorites`, { id });
+}
+
+export const deleteFromFavorite = async (id) => {
+    await API.put(`${URL}/users/removeFavorites`, { id });
+}

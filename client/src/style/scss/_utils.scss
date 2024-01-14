@@ -57,7 +57,15 @@
     border-radius: 5rem;
     padding: 1rem
 }
-
+.btn-star{
+    color: rgb(249, 116, 116);
+    font-size: 3rem;
+    font-weight: 100;
+    border: none;
+    background:none;
+    margin-bottom: 35%;
+cursor: pointer;
+}
 // flex
 @mixin flex($content-direction) {
     display: flex;
@@ -70,6 +78,17 @@
     border: 1px $primary-color-light solid;
     border-radius: 0.5rem;
   }
+
+//   rating
+.rating{
+    background-color: rgb(198, 247, 177);
+    width: 4rem;
+    height: 3rem;
+    padding: 0.5rem;
+    text-align: center;
+    @include border();
+    border-radius: 40%;
+}
 
 @keyframes spinner {
     to {

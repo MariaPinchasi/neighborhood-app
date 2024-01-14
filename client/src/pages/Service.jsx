@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { useGlobalServicesContext } from '../hooks/useGlobalServicesContext';
 import { useGlobalReviewsContext } from '../hooks/useGlobalReviewsContext';
-import { FaPhone } from 'react-icons/fa';
+import { FaPhone, FaRegHeart, FaHeart } from 'react-icons/fa';
 import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 
 const Service = () => {
 
     const { serviceId } = useParams();
     const { fetchService, service } = useGlobalServicesContext();
-    const { user } = useGlobalUserContext();
+    const { user, handleFavoriteAddition, handleFavoriteDeletion } = useGlobalUserContext();
+
     const { isLoading, fetchReviews, reviews, handleReviewDeletion } = useGlobalReviewsContext();
     let canGiveReview = true;
-
     useEffect(() => {
         fetchService(serviceId);
     }, [serviceId]);
@@ -21,7 +21,22 @@ const Service = () => {
         fetchReviews(serviceId);
     }, [serviceId]);
 
-    const { _id, service: serviceType, name, description, phone, photo, averageRating, user: serviceUser } = service;
+    const { service: serviceType, name, description, phone, photo, averageRating, user: serviceUser } = service;
+
+    const [isFavorite, setIsFavorite] = useState(user?.favorites.includes(serviceId));
+
+    const handleFavorite = () => {
+        if (isFavorite) {
+            setIsFavorite(false);
+            handleFavoriteDeletion(serviceId);
+
+        }
+        else {
+            setIsFavorite(true);
+            handleFavoriteAddition(serviceId);
+        }
+    }
+
     if (serviceUser === user?._id) {
         canGiveReview = false;
     }
@@ -39,8 +54,9 @@ const Service = () => {
                     <h2>{`${name}`}</h2>
                     <h3><FaPhone />{` ${phone}`}</h3>
                     <p>{`${description}`}</p>
-                    <h3>{`Average Rating: ${averageRating ? averageRating : "No Reviews"}`}</h3>
+                    <h3 className={averageRating ? 'rating' : ''}>{averageRating ? averageRating : "No Reviews"}</h3>
                 </div>
+                <button className='btn-star' onClick={handleFavorite}>{isFavorite ? <FaHeart /> : <FaRegHeart />}</button>
             </article>
             <div className='reviews'>
                 <h1>Reviews</h1>
@@ -52,7 +68,7 @@ const Service = () => {
                     return (
                         <article className='review' key={_id}>
                             <h2>{title}</h2>
-                            <h3>{`${rating}/10`}</h3>
+                            <h3 className='rating'>{`${rating}/10`}</h3>
                             <p>{text}</p>
                             <h4>{reviewUser.name}</h4>
                             {reviewUser._id === user?._id &&

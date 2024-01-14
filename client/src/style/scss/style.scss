@@ -19,31 +19,27 @@
         letter-spacing: 0.4rem;
     }
    }  
-   .nav-links{
-    width: 50%;
-    height: 100%;
-    @include flex(flex-start);
-    li{
+    .nav-links {
+        @include flex(flex-start);
+        width: 50%;
         height: 100%;
-        width: 8rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-        padding: 3rem 1rem 2rem 1rem;
-        background:$primary-color;
-        text-align: center;
-        a{
-            color:$font-light;   
-            &.active{
-                color:$font-dark;
+        li a {
+            display: block;
+            height: 100%;
+            width: 8rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            @include set-background($primary-color);
+            padding: 2.8rem 0.8rem;
+            text-align: center;
+            &:hover,
+            &.active {
+            background-color: $primary-color-dark;
+            color: $primary-color-lightest;
             }
-        }
-       
-        &:hover{
-            background-color:$primary-color-dark;
-        }
+        }  
     }
-   
-   }
+
    .profile-menu{
     display: none;
     position: absolute;
@@ -93,8 +89,10 @@
     flex-direction: column;
     margin: 2rem 0;
     h1 {
-        margin: 10rem 0 1.5rem 0;
+        margin: 10rem 0rem 1.5rem 0;
+        padding: 0 2rem;
         font-size: 2.5rem;
+        line-height: 3rem;
         font-family: $secondary-font;
         letter-spacing: 0.3rem;
         color: $primary-color-dark;          
@@ -192,6 +190,11 @@
             color: $primary-color-dark;
         }
       }
+      .delete{
+        height: fit-content;
+        width: fit-content;
+        padding: 2rem;
+      }
   }
   .show-modal {
     opacity: 1;
@@ -269,9 +272,10 @@
                 h2,h3{
                     text-transform: capitalize;
                 }
-                h3,p{
+                h3,p,h4{
                     font-size: 1.2rem;
                 }
+             
             }           
         }
     }
@@ -287,16 +291,6 @@
         padding: 2rem;
         h2,h3,h4{
             text-transform: capitalize;
-        }
-        h3{
-            background-color: rgb(198, 247, 177);
-            width: 4rem;
-            height: 3rem;
-            padding: 0.5rem;
-            text-align: center;
-            @include border();
-            border-radius: 40%;
-
         }
         h4{
             font-style: italic;
@@ -316,12 +310,18 @@
         color: $primary-color-dark;
     }
 }
+.empty-message{
+    padding: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+    font-style: italic;
+}
 /* /////////////////////footer////////////////////////////// */
 .footer{
     background-color: $primary-color-light;
-    height: 7rem;
+    height: 5rem;
     text-align: center;
     font-size: 1.8rem;
-    padding-top: 3rem;
+    padding-top: 2rem;
     color: darken($primary-color,30%);
 }

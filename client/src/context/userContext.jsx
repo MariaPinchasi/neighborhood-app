@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getUser, loginUser, logoutUser, registerUser } from "../api/api";
+import { addToFavorite, deleteFromFavorite, getUser, loginUser, logoutUser, registerUser } from "../api/api";
 import { handleError, showToast } from "../utils/index.js";
 
 export const AppUserContext = createContext();
@@ -25,7 +25,6 @@ export const AppUserProvider = ({ children }) => {
             const userData = await loginUser(email, password);
             setUser(userData);
             navigate('/search');
-            console.log(userData);
         } catch (err) {
             handleError(err, 'Error related to user login');
         }
@@ -49,6 +48,24 @@ export const AppUserProvider = ({ children }) => {
             handleError(err, 'Error related to user logout');
         }
     };
+    const handleFavoriteAddition = async (serviceId) => {
+        try {
+            await addToFavorite(serviceId);
+            loadUser();
+            showToast('Service successfully added to your favorites');
+        } catch (err) {
+            handleError(err, 'Error related to favorite addition');
+        }
+    };
+    const handleFavoriteDeletion = async (serviceId) => {
+        try {
+            await deleteFromFavorite(serviceId);
+            loadUser();
+            showToast('Service successfully removed from your favorites');
+        } catch (err) {
+            handleError(err, 'Error related to favorite deletion');
+        }
+    };
 
     return (
         <AppUserContext.Provider
@@ -56,7 +73,9 @@ export const AppUserProvider = ({ children }) => {
                 user,
                 login,
                 register,
-                logout
+                logout,
+                handleFavoriteAddition,
+                handleFavoriteDeletion
             }}>
             {children}
         </AppUserContext.Provider>

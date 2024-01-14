@@ -11,6 +11,7 @@ export const AppServicesProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalServiceId, setModalServiceId] = useState();
+    const [deleteModal, setDeleteModal] = useState(false);
 
     const openModal = (id) => {
         setIsModalOpen(true);
@@ -47,6 +48,7 @@ export const AppServicesProvider = ({ children }) => {
         try {
             const serviceData = await getService(serviceId);
             setService(serviceData);
+            setIsLoading(false);
         } catch (err) {
             handleError(err, `Error while getting the service with id ${serviceId}`);
         }
@@ -85,7 +87,7 @@ export const AppServicesProvider = ({ children }) => {
         try {
             await createService({ service, description, phone });
             showToast('Service successfully added');
-            fetchServices();
+            fetchUserServices();
         } catch (err) {
             handleError(err, "Error while adding the service");
         }
@@ -110,7 +112,9 @@ export const AppServicesProvider = ({ children }) => {
                 isModalOpen,
                 openModal,
                 closeModal,
-                modalServiceId
+                modalServiceId,
+                deleteModal,
+                setDeleteModal
             }}>
             {children}
         </AppServicesContext.Provider>

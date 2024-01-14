@@ -13,6 +13,7 @@ import {
 } from './pages';
 
 import SharedLayout from './components/SharedLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
       },
       {
         path: 'profile',
-        element: <Profile />,
+        element: <ProtectedRoute><Profile /> </ProtectedRoute>,
       },
       {
         path: 'register',
@@ -37,33 +38,33 @@ const routes = [
       },
       {
         path: 'search',
-        element: <Search />,
+        element: <ProtectedRoute><Search /></ProtectedRoute>,
       },
       {
         path: 'services',
         children: [
           {
             path: 'addService',
-            element: <ServiceForm />
+            element: <ProtectedRoute><ServiceForm /> </ProtectedRoute>,
           },
           {
             path: ':serviceId',
-            element: <Service />
+            element: <ProtectedRoute><Service /> </ProtectedRoute>
           },
           {
             path: ':serviceId/editService',
-            element: <ServiceForm />
+            element: <ProtectedRoute><ServiceForm /> </ProtectedRoute>
           },
           {
             path: ':serviceId/addReview',
-            element: <ReviewForm />,
+            element: <ProtectedRoute><ReviewForm /></ProtectedRoute>,
           },
           {
             path: ':serviceId/reviews',
             children: [
               {
                 path: ':reviewId',
-                element: <ReviewForm />
+                element: <ProtectedRoute><ReviewForm /></ProtectedRoute>
               },
             ]
           },
@@ -72,7 +73,6 @@ const routes = [
 
     ]
   }
-
 ];
 
 function App() {

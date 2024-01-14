@@ -14,6 +14,7 @@ const locations = require('./routes/locations');
 const services = require('./routes/services');
 const auth = require('./routes/auth');
 const reviews = require('./routes/reviews');
+const users = require('./routes/users');
 
 // env vars
 dotenv.config({ path: './config/config.env' });
@@ -49,6 +50,7 @@ app.use('/api/v1/locations', locations);
 app.use('/api/v1/services', services);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/reviews', reviews);
+app.use('/api/v1/users', users);
 
 app.use(errorHandler);
 
