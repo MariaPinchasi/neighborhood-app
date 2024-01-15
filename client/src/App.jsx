@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-
 import {
   Home,
   About,
@@ -9,7 +8,8 @@ import {
   Search,
   Service,
   ReviewForm,
-  ServiceForm
+  ServiceForm,
+  LocationForm
 } from './pages';
 
 import SharedLayout from './components/SharedLayout';
@@ -31,6 +31,10 @@ const routes = [
       {
         path: 'profile',
         element: <ProtectedRoute><Profile /> </ProtectedRoute>,
+      },
+      {
+        path: 'addLocation',
+        element: <ProtectedRoute isAdmin><LocationForm /></ProtectedRoute>,
       },
       {
         path: 'register',

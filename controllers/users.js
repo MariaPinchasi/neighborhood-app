@@ -8,12 +8,15 @@ const asyncHandler = require('../middleware/async');
 // @route     GET /api/v1/users
 // @access    Private
 exports.getUsers = asyncHandler(async (req, res, next) => {
-    const users = await User.find();
-
+    const users = await User.find().populate({
+        path: 'location',
+        select: 'city neighborhood'
+    });
+    const filteredUsers = users.filter(user => user.role !== 'admin');
     return res.status(200).json({
         success: true,
-        count: users.length,
-        data: users
+        count: filteredUsers.length,
+        data: filteredUsers
     });
 });
 
@@ -67,12 +70,7 @@ exports.addFavorites = asyncHandler(async (req, res, next) => {
 // @route     PUT /api/v1/users/removeFavorites
 // @access    Private
 exports.removeFavorites = asyncHandler(async (req, res, next) => {
-    let service = await Service.findById(req.body.id);
-    if (!service) {
-        return next(
-            new ErrorResponse(`Service not found with id of ${req.body.id}`, 404)
-        );
-    }
+
     if (!req.user.favorites.find((serviceId => serviceId === req.body.id))) {
         return next(
             new ErrorResponse(`Service with id of ${req.body.id} is not in users favorites`, 404)

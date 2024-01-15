@@ -1,8 +1,9 @@
 import React from 'react'
 import { useGlobalServicesContext } from '../hooks/useGlobalServicesContext';
+import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 
-const DeleteModal = ({ id }) => {
-    const { handleServiceDeletion, deleteModal, setDeleteModal } = useGlobalServicesContext();
+const DeleteModal = ({ id, deleteFunction, navigate }) => {
+    const { deleteModal, setDeleteModal } = useGlobalServicesContext();
 
     return (
         <div className={deleteModal ? 'modal-overlay show-modal' : 'modal-overlay'}>
@@ -13,7 +14,10 @@ const DeleteModal = ({ id }) => {
                 }}>No</button>
                 <button className='btn-primary bg-red' onClick={() => {
                     setDeleteModal(false);
-                    handleServiceDeletion(id);
+                    deleteFunction(id);
+                    if (navigate) {
+                        navigate('/');
+                    }
                 }}>Yes</button>
             </div>
         </div>

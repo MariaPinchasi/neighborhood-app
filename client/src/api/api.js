@@ -7,11 +7,14 @@ const API = axios.create({
     withCredentials: true
 });
 
+// locations
 export const getAllLocations = async () => {
     const res = await API.get(`${URL}/locations`);
     return res.data.data;
 }
-
+export const createLocation = async (location) => {
+    await API.post(`${URL}/locations`, location);
+}
 // services
 export const getAllServices = async (query) => {
     let res;

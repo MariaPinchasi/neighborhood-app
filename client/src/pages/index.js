@@ -6,6 +6,7 @@ import Search from "./Search";
 import Service from "./Service";
 import ReviewForm from "./ReviewForm";
 import ServiceForm from "./ServiceForm";
+import LocationForm from "./LocationForm";
 
 export {
     Home,
@@ -15,5 +16,7 @@ export {
     Search,
     Service,
     ReviewForm,
-    ServiceForm
+    ServiceForm,
+    LocationForm
+
 }

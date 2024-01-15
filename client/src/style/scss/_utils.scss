@@ -57,6 +57,18 @@
     border-radius: 5rem;
     padding: 1rem
 }
+.btn-whatsapp{
+    @extend %btn;
+    @include set-background(rgb(158, 242, 158));
+    height: 2.5rem;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    font-family: $secondary-font;
+    svg{
+        font-size: 1.5rem;
+    }
+
+}
 .btn-star{
     color: rgb(249, 116, 116);
     font-size: 3rem;

@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 import MyServices from '../components/MyServices';
 import MyFavorites from '../components/MyFavorites';
+import ManageLocations from '../components/ManageLocations';
+import ManageUsers from '../components/ManageUsers';
 
-const viewOptions = ['My Services', 'My Favorites'];
 
 const Profile = () => {
     const { user } = useGlobalUserContext();
+    const viewOptions = user?.role === 'admin' ? ['Manage Locations', 'Manage Users'] : ['My Services', 'My Favorites'];
+
     const [current, setCurrent] = useState(viewOptions[0]);
 
     return (
@@ -21,6 +24,8 @@ const Profile = () => {
             </div>
             {current === 'My Services' && <MyServices />}
             {current === 'My Favorites' && <MyFavorites />}
+            {current === 'Manage Locations' && <ManageLocations />}
+            {current === 'Manage Users' && <ManageUsers />}
         </main>
     )
 }

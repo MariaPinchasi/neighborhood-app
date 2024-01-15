@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children, isAdmin }) => {
     const { user } = useGlobalUserContext();
     const navigate = useNavigate();
     useEffect(() => {
-        if (!user || isAdmin && !user?.isAdmin) {
+        if (!user || isAdmin && !user?.role === 'admin') {
             navigate('/');
         }
     }, [navigate, user, isAdmin])

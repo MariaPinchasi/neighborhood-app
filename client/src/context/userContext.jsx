@@ -1,14 +1,35 @@
 import { createContext, useEffect, useState } from "react";
-import { addToFavorite, deleteFromFavorite, deleteUser, getUser, getUsers, loginUser, logoutUser, registerUser } from "../api/api";
+import { addToFavorite, createLocation, deleteFromFavorite, deleteUser, getAllLocations, getUser, getUsers, loginUser, logoutUser, registerUser } from "../api/api";
 import { handleError, showToast } from "../utils/index.js";
 
 export const AppUserContext = createContext();
 
 export const AppUserProvider = ({ children }) => {
     const [user, setUser] = useState();
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    // locations
+    const [locations, setLocations] = useState([]);
+
+    const fetchLocations = async () => {
+        try {
+            const locationsData = await getAllLocations();
+            setLocations(locationsData);
+        } catch (err) {
+            console.log(err, 'Error while getting the locations');
+        }
+    }
+    const handleLocationAddition = async (location) => {
+        try {
+            await createLocation(location);
+            fetchLocations();
+            showToast('Location successfully added');
+        } catch (err) {
+            handleError(err, 'Error related to location addition');
+        }
+    };
+    // users
     const loadUser = async () => {
         try {
             const userData = await getUser();
@@ -51,7 +72,6 @@ export const AppUserProvider = ({ children }) => {
             handleError(err, 'Error related to user logout');
         }
     };
-
 
     const fetchUsers = async () => {
         try {
@@ -101,9 +121,14 @@ export const AppUserProvider = ({ children }) => {
                 register,
                 logout,
                 fetchUsers,
+                users,
+                isLoading,
                 handleUserDeletion,
                 handleFavoriteAddition,
-                handleFavoriteDeletion
+                handleFavoriteDeletion,
+                fetchLocations,
+                locations,
+                handleLocationAddition
             }}>
             {children}
         </AppUserContext.Provider>

@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { getAllLocations } from '../api/api';
+import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 
 const SelectLocation = ({ handleChange, errors }) => {
-    const [locations, setLocations] = useState([]);
-    const fetchLocations = async () => {
-        try {
-            const locationsData = await getAllLocations();
-            setLocations(locationsData);
-        } catch (err) {
-            console.log(err, 'Error while getting the locations');
-        }
-    }
+    const { fetchLocations, locations } = useGlobalUserContext();
 
     useEffect(() => {
         fetchLocations();
     }, []);
+
     return (
         <div className="input-group">
             <select name="location" defaultValue='Select Your Neighborhood' onChange={handleChange}>

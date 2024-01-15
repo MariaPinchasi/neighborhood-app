@@ -6,7 +6,7 @@ import ImageUpload from './ImageUpload';
 import DeleteModal from './DeleteModal';
 
 const MyServices = () => {
-    const { fetchUserServices, userServices, isLoading, openModal, setDeleteModal, deleteModal, modalServiceId } = useGlobalServicesContext();
+    const { fetchUserServices, userServices, isLoading, openModal, setDeleteModal, deleteModal, modalServiceId, handleServiceDeletion } = useGlobalServicesContext();
     const [deleteId, setDeleteId] = useState();
     useEffect(() => {
         fetchUserServices();
@@ -38,7 +38,7 @@ const MyServices = () => {
                     </div>
                 )
             })}
-            {deleteModal && <DeleteModal id={deleteId} />}
+            {deleteModal && <DeleteModal id={deleteId} deleteFunction={handleServiceDeletion} />}
             <ImageUpload serviceId={modalServiceId} />
 
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Input = ({ label, type, name, value, error, handleChange }) => {
-    if (name === 'description' || name === 'description') {
+    if (name === 'description' || name === 'text') {
         return (
             <div className="input-group">
                 <textarea type={type} name={name} placeholder={label} value={value} onChange={handleChange} />

@@ -1,0 +1,6 @@
+.user-card{
+        @extend %card;
+        h2{
+            text-transform: capitalize;
+        }        
+}
