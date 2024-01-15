@@ -8,25 +8,27 @@ const FavoriteService = ({ serviceId }) => {
     const { handleFavoriteDeletion } = useGlobalUserContext();
 
     const [service, setService] = useState({});
-    // const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const fetchService = async (serviceId) => {
         try {
             const serviceData = await getService(serviceId);
             setService(serviceData);
-            // setIsLoading(false);
         } catch (err) {
             handleError(err, `Error while getting the service with id ${serviceId}`);
+        }
+        finally {
+            setIsLoading(false);
         }
     }
 
     useEffect(() => {
         fetchService(serviceId);
     }, [serviceId]);
-    // if (isLoading) {
-    //     return (
-    //         <div className='loading'></div>
-    //     );
-    // }
+    if (isLoading) {
+        return (
+            <div className='loading'></div>
+        );
+    }
 
     return (
         <div>

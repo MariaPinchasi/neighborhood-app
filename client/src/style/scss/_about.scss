@@ -1,0 +1,28 @@
+.about-container{
+    width: 80%;
+    height: 25rem;
+    margin: 0 auto;
+    @include flex(flex-end);
+    flex-direction: column;
+    background: url(../../../public/about.jpg) no-repeat center center/cover;
+    opacity: 0.9;
+    h1{
+        text-transform: capitalize;
+        font-family: $secondary-font;
+        color: $primary-color-lightest;
+        text-align: center;
+        font-size: 4rem;
+        letter-spacing: 0.5rem;
+    }
+ 
+}
+.about-content{
+    @extend %card;
+    width: 80%;
+    height: 30%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: $primary-color-dark;
+    font-weight: 600;
+}

@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
+import { useNavigate } from 'react-router-dom';
 
 const LocationForm = () => {
+    const navigate = useNavigate();
+
     const { handleLocationAddition } = useGlobalUserContext();
 
     const [locationData, setLocationData] = useState({
@@ -31,11 +34,11 @@ const LocationForm = () => {
         let isValid = true;
         const newErrors = {};
         if (!locationData.city) {
-            newErrors.service = "Please add a city";
+            newErrors.city = "Please add a city";
             isValid = false;
         }
         if (!locationData.neighborhood) {
-            newErrors.description = "Please add a neighborhood";
+            newErrors.neighborhood = "Please add a neighborhood";
             isValid = false;
         }
 
@@ -43,6 +46,7 @@ const LocationForm = () => {
 
         if (isValid) {
             handleLocationAddition(locationData);
+            navigate('/profile');
         }
     };
 

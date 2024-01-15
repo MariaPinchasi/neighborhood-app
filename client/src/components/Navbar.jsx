@@ -19,6 +19,13 @@ const Navbar = () => {
                         Home
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink
+                        to='/about'
+                        className={({ isActive }) => isActive ? 'active' : undefined}>
+                        About Us
+                    </NavLink>
+                </li>
                 {user && <li>
                     <NavLink
                         to='/search'

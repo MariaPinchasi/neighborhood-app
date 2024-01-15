@@ -16,7 +16,7 @@ const Service = () => {
     let canGiveReview = true;
     useEffect(() => {
         fetchService(serviceId);
-    }, [serviceId]);
+    }, [serviceId, fetchReviews]);
 
     useEffect(() => {
         fetchReviews(serviceId);
