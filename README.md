@@ -1,184 +1,83 @@
-# NeighborhoodConnect App Design Document
+# HandyHood App
 
-## Introduction
+HandyHood is a web application designed to facilitate connections between users and local service providers within their neighborhood.
 
-NeighborhoodConnect is a web application designed to connect users with local service providers in their neighborhood for various services. Users can register, log in, search for services, save favorites, and leave reviews. The application ensures a user-friendly experience with secure authentication and seamless communication between users and services.
+![main](https://github.com/MariaPinchasi/neighborhood-app/assets/135972701/d58e53ef-6724-462b-a327-73ac1dc20db3)
 
-## Frontend
+## Features
 
-### Pages:
+![Image](https://github.com/MariaPinchasi/neighborhood-app/assets/135972701/115dfb29-8c42-49eb-bba2-99f6466f8573)
 
-1. **Home and login Page:**
+### User Features
 
-   - Includes a login option.
-   - Redirects to the search page after login.
+- User Registration and Authentication
+- Service Search Functionality
+- Leave Reviews for Services
+- Add Services to Favorites
 
-2. **Registration Page:**
+- User Profile:
+  - View Favorites
+  - Add, Edit, Delete New Services
+  - Uploading Image for User's Service
 
-   - Allows new users to register.
+![Image](https://github.com/MariaPinchasi/neighborhood-app/assets/135972701/8fd05f62-bdd7-4a17-a45a-1067ca5276c3)
 
-3. **Search Page:**
+### Admin Features
 
-   - Displays the search interface and search results.
+- Manage Locations.
+- View and Delete Users.
+- Delete Services and Reviews.
 
-4. **Service Profile Page:**
+### Additional Features
 
-   - Shows detailed information about a selected service.
-   - Includes reviews and a button to add to favorites.
+- **Responsive Design** for User Experience
+- Secure Authentication and Authorization: Users are authenticated via tokens sent in **cookies**.
+- User-Friendly Service Search Interface
+- Image Upload for Service Profiles
+- Connect with Services via **WhatsApp**:
+  - Users can initiate communication with service providers through WhatsApp.
+  - Service profiles display a WhatsApp icon or button for easy access.
 
-5. **User Dashboard Page:**
+![Image](https://github.com/MariaPinchasi/neighborhood-app/assets/135972701/f39dc974-5cf9-4865-bf1f-8bca0d47f053)
 
-   - Allows users to manage their profile, view their added services, and access their favorite services.
+## How to Use
 
-### Components:
+### User Registration and Login
 
-1. **Header Component:**
+1. Visit the application at `https://venerable-beignet-615b16.netlify.app/` in your browser.
+2. Register a new account or log in if you already have one.
 
-   - Contains the logo and navigation links.
-   - Displays login status and user profile if logged in.
+### User Actions
 
-2. **Registration Component:**
+1. Explore services in your neighborhood.
+2. Add services to your favorites.
+3. Leave reviews for services you've used.
+4. Manage your profile: view, edit and add services in the User Dashboard.
 
-   - Allows users to register with their name, email, phone, password, city, and neighborhood.
+### Admin Actions
 
-3. **Login Component:**
+1. Log in with admin credentials.
+2. Manage locations to ensure accurate service listings.
+3. View and delete user accounts.
+4. Cascade Deletion: When deleting a user, all associated services and reviews are deleted.
+5. Delete services to maintain an up-to-date service directory.
+6. Delete reviews.
 
-   - Enables users to log in using their credentials.
+## Technologies Used
 
-4. **Search Component:**
+- Frontend:
 
-   - Provides a search interface where users can input the profession they are looking for.
-   - Filters results based on the user's city and neighborhood.
+  - React.js
+  - Sass
+  - React-select
 
-5. **service Listing Component:**
+- Backend:
 
-   - Displays a list of services based on the user's search criteria.
+  - Node.js
+  - Express
+  - MongoDB
 
-6. **service Profile Component:**
+- Authentication:
+  - Token-based authentication via cookies.
 
-   - Shows detailed information about a selected service, including contact info, description, optional image, and reviews.
-   - Includes an option to send a WhatsApp message to the service.
-
-7. **User Dashboard Component:**
-
-   - Allows users to manage their profile and view their added services.
-
-8. **FavoriteButton Component:**
-   - Allows users to add/remove services from their favorites.
-
-### Context:
-
-- **User Context:**
-
-  - Manages user authentication and profile information.
-
-- **service and search Context:**
-
-  - Handles the information related to services.
-
-### Api:
-
-- Handles API calls to the backend.
-
-### Custom Hooks:
-
-- **useAuth:**
-
-  - Provides authentication-related functionality.
-
-- **useServiceSearch:**
-
-  - Manages state related to the search functionality.
-
-## Backend
-
-### Schema Models:
-
-1. **Location Model:**
-
-   - Fields: city, neighborhood.
-   - Permission Levels: Admin.
-
-2. **User Model:**
-
-   - Fields: name, email, phone, password, favorites: array of favorite services
-   - ref to location.
-   - Permission Levels: User, Admin.
-
-3. **Service Model:**
-
-   - Fields: service, name, description, image (optional), phone.
-   - ref to user
-   - ref to location.
-   - Permission Levels: User (can add,modify and delete his own), Admin (can modify/delete).
-
-4. **Review Model:**
-   - Fields: user (ref to User), service (ref to service), rating, comment.
-
-### Controllers:
-
-1. **AuthController:**
-
-   - Handles user registration and login.
-
-2. **serviceController:**
-
-   - Manages operations related to services (add, modify, delete).
-
-3. **ReviewController:**
-
-   - Manages operations related to reviews (add, view).
-
-4. **LocationController:**
-   - Manages operations related to Locations (add, view) only by admin.
-
-### Routes:
-
-1. **/api/v1/auth:**
-
-   - POST /register
-   - POST /login
-   - GET /getUser
-   - PUT /logout
-
-2. **/api/locations:**
-
-   - GET /locations
-   - POST /locations
-
-3. **/api/services:**
-
-   - GET /
-   - POST /
-   - PUT /:id
-   - GET /:id
-   - DELETE /:id
-   - upload photo: PUT /:id/photo
-
-4. **/api/reviews:**
-   - GET /services/:id/reviews
-   - POST //services/:id/reviews
-
-### Relationships:
-
-- **User and Review:**
-
-  - One-to-Many relationship (a user can write multiple reviews).
-
-- **service and Review:**
-
-  - One-to-Many relationship (a service can have multiple reviews).
-
-- **User and service:**
-
-  - One-to-Many relationship (a user can add multiple services).
-
-  - **User and location:**
-  - One-to-One relationship (a user can have one location).
-
-- **Service and location:**
-- One-to-One relationship (a service can have one location).
-
-## Conclusion
-
-NeighborhoodConnect now offers enhanced user engagement with the ability to save favorite services and leave reviews. The frontend modifications provide a seamless experience for users, and the backend adjustments accommodate the new features, ensuring a comprehensive and interactive application for connecting users with local services.
+Happy exploring and connecting with local services!

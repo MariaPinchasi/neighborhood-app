@@ -13,6 +13,7 @@ const Service = () => {
     const { fetchService, service, deleteModal, setDeleteModal, handleServiceDeletion } = useGlobalServicesContext();
     const { user, handleFavoriteAddition, handleFavoriteDeletion } = useGlobalUserContext();
     const { isLoading, fetchReviews, reviews, handleReviewDeletion } = useGlobalReviewsContext();
+    const mobileRegex = /^\d{3}-\d{7}$/;
 
     let canGiveReview = true;
     useEffect(() => {
@@ -24,22 +25,14 @@ const Service = () => {
     }, [serviceId]);
 
     const { service: serviceType, name, description, phone, photo, averageRating, user: serviceUser } = service;
-
     const [isFavorite, setIsFavorite] = useState(user?.favorites.includes(serviceId));
 
     const handleWhatsAppClick = (phoneNumber) => {
-        const mobileRegex = /^\d{3}-\d{7}$/;
-        if (mobileRegex.test(phoneNumber)) {
-            const formattedPhone = formatPhone(phoneNumber);
-            // const whatsappLink = `whatsapp://send?phone=${phoneNumber}`;
-            // window.location.href = whatsappLink;
-            const whatsappLink = `https://wa.me/${formattedPhone}`;
-            window.open(whatsappLink, '_blank');
-        }
-        else {
-            showToast('Service phone number does not have whatsapp account');
-        }
-
+        const formattedPhone = formatPhone(phoneNumber);
+        // const whatsappLink = `whatsapp://send?phone=${phoneNumber}`;
+        // window.location.href = whatsappLink;
+        const whatsappLink = `https://wa.me/${formattedPhone}`;
+        window.open(whatsappLink, '_blank');
     };
 
     const handleFavorite = () => {
@@ -71,7 +64,7 @@ const Service = () => {
                     <h3 className='service-label'>{`${serviceType}`}</h3>
                     <h2>{`${name}`}</h2>
                     <h3><FaPhone />{` ${phone}`}</h3>
-                    <button className='btn-whatsapp' onClick={() => { handleWhatsAppClick(phone) }}><FaWhatsapp /> Send a message</button>
+                    {mobileRegex.test(phone) && <button className='btn-whatsapp' onClick={() => { handleWhatsAppClick(phone) }}><FaWhatsapp /> Send a message</button>}
                     <p>{`${description}`}</p>
                     <h3 className={averageRating ? 'rating' : ''}>{averageRating ? averageRating : "No Reviews"}</h3>
                 </div>
