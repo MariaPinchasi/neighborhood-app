@@ -5,6 +5,7 @@ import { useGlobalReviewsContext } from '../hooks/useGlobalReviewsContext';
 import { FaPhone, FaRegHeart, FaHeart, FaWhatsapp } from 'react-icons/fa';
 import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 import DeleteModal from '../components/DeleteModal';
+import { formatPhone, showToast } from '../utils';
 
 const Service = () => {
     const navigate = useNavigate();
@@ -27,8 +28,18 @@ const Service = () => {
     const [isFavorite, setIsFavorite] = useState(user?.favorites.includes(serviceId));
 
     const handleWhatsAppClick = (phoneNumber) => {
-        const whatsappLink = `whatsapp://send?phone=${phoneNumber}`;
-        window.location.href = whatsappLink;
+        const mobileRegex = /^\d{3}-\d{7}$/;
+        if (mobileRegex.test(phoneNumber)) {
+            const formattedPhone = formatPhone(phoneNumber);
+            // const whatsappLink = `whatsapp://send?phone=${phoneNumber}`;
+            // window.location.href = whatsappLink;
+            const whatsappLink = `https://wa.me/${formattedPhone}`;
+            window.open(whatsappLink, '_blank');
+        }
+        else {
+            showToast('Service phone number does not have whatsapp account');
+        }
+
     };
 
     const handleFavorite = () => {
@@ -64,7 +75,7 @@ const Service = () => {
                     <p>{`${description}`}</p>
                     <h3 className={averageRating ? 'rating' : ''}>{averageRating ? averageRating : "No Reviews"}</h3>
                 </div>
-                <button className='btn-star' onClick={handleFavorite}>{isFavorite ? <FaHeart /> : <FaRegHeart />}</button>
+                {serviceUser !== user?._id && <button className='btn-star' onClick={handleFavorite}>{isFavorite ? <FaHeart /> : <FaRegHeart />}</button>}
             </article>
             {user?.role === 'admin' && <button className='btn-wide bg-red' onClick={handleDelete}>Delete Service</button>}
             {deleteModal && <DeleteModal id={serviceId} deleteFunction={handleServiceDeletion} navigate={navigate} />}

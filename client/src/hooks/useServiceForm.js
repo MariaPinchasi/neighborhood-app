@@ -59,6 +59,8 @@ const useServiceForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const mobileRegex = /^\d{3}-\d{7}$/;
+        const phoneRegex = /^\d{2}-\d{7}$/;
         let isValid = true;
         const newErrors = {};
         if (serviceData.service === 'All Services' || !serviceData.service) {
@@ -73,8 +75,8 @@ const useServiceForm = () => {
             newErrors.description = "Description can't be longer than 500 characters";
             isValid = false;
         }
-        if (!serviceData.phone || serviceData.phone < 9 || serviceData.phone > 12) {
-            newErrors.phone = "Please add a phone between 9 and 12 integers";
+        if (!mobileRegex.test(serviceData.phone) && !phoneRegex.test(serviceData.phone)) {
+            newErrors.phone = "Please add a phone in format: XXX-XXXXXXX OR XX-XXXXXXX";
             isValid = false;
         }
 

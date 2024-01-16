@@ -66,7 +66,7 @@ UserSchema.methods.getSignedJwtToken = function () {
 UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
-
+// cascade deletion
 UserSchema.pre('deleteOne', { document: true, query: false }, async function (next) {
     console.log(`Services being removed from user ${this._id}`)
     await this.model('Service').deleteMany({ user: this._id });

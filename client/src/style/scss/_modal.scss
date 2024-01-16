@@ -50,7 +50,13 @@
       .delete{
         height: fit-content;
         width: fit-content;
-        padding: 2rem;
+        padding: 4rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2,1fr);
+        h1{
+            grid-column: 1 / span 2;
+        }
       }
   }
   .show-modal {

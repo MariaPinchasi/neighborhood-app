@@ -13,7 +13,6 @@ const ServiceSchema = new mongoose.Schema(
             required: [true, 'Please add a name'],
             trim: true,
         },
-        // slug: String,
         description: {
             type: String,
             required: [true, 'Please add a description'],
@@ -50,11 +49,12 @@ const ServiceSchema = new mongoose.Schema(
     }
 );
 
-// Create shoe slug from the name
-// ShoeSchema.pre('save', function (next) {
-//     this.slug = slugify(this.name, { lower: true });
-//     next();
-// });
 
+// cascade deletion
+ServiceSchema.pre('deleteOne', { document: true, query: false }, async function (next) {
+    console.log(`Reviews being removed from service ${this._id}`)
+    await this.model('Review').deleteMany({ service: this._id });
+    next();
+});
 
 module.exports = mongoose.model('Service', ServiceSchema);
