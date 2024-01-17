@@ -76,7 +76,7 @@ const Service = () => {
                 <h1>Reviews</h1>
                 {reviews?.map(review => {
                     const { _id, title, text, rating, user: reviewUser } = review;
-                    if (reviewUser._id === user?._id) {
+                    if (reviewUser._id === user?._id || user?.role === 'admin') {
                         canGiveReview = false;
                     }
                     return (

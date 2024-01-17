@@ -16,7 +16,7 @@ const DeleteModal = ({ id, deleteFunction, navigate }) => {
                     setDeleteModal(false);
                     deleteFunction(id);
                     if (navigate) {
-                        navigate('/');
+                        navigate('/search');
                     }
                 }}>Yes</button>
             </div>
