@@ -78,6 +78,7 @@ export const AppServicesProvider = ({ children }) => {
         try {
             await deleteService(serviceId);
             showToast('Service successfully deleted');
+            fetchServices();
             fetchUserServices();
         } catch (err) {
             handleError(err, "Error while deleting the service");
