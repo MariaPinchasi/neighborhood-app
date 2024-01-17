@@ -1,6 +1,5 @@
 import React from 'react'
 import { useGlobalServicesContext } from '../hooks/useGlobalServicesContext';
-import { useGlobalUserContext } from '../hooks/useGlobalUserContext';
 
 const DeleteModal = ({ id, deleteFunction, navigate }) => {
     const { deleteModal, setDeleteModal } = useGlobalServicesContext();
