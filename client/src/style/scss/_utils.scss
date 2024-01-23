@@ -2,7 +2,7 @@
     margin: 0 auto;
     max-width: 1600rem;
     main{
-        min-height: 75vh;
+        min-height: 81vh;
         padding-top: 2rem;
     }
 }
@@ -50,7 +50,10 @@
     margin: 2rem 2rem;
     @include set-background($primary-color);
 }
+.btn-current{
+    @include set-background($primary-color-dark);
 
+}
 .btn-user {
     @extend %btn;
     @include set-background($primary-color);

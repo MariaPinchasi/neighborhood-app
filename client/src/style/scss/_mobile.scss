@@ -1,20 +1,26 @@
 @media(max-width:900px){
-   
+    .container {
+        main{
+            min-height: 84vh;
+        }
+    }  
     .navbar {
        padding: 2rem;
         position: relative;
         height: 5rem;
+        
         .nav-links{
             height: 2.5rem;
-            width:100vw;
+            width:fit-content;
             flex-direction: column;
             position: absolute;
             top: 5rem;
-            left: 0;
+            right: 0;
+            left: -2;
             li a{
                 height: 2.5rem;
-            width:100vw;
-            padding: 0.5rem;
+                width:100vw;
+                padding: 0.5rem 0;
             }  
           }
           .profile-menu{
@@ -24,7 +30,7 @@
       }
      
       .show-case{
-        height: 77vh;
+        height: 81vh;
         img{
             display: none;
         }
@@ -64,6 +70,9 @@
         .services-list{
             padding-top: 1rem;
         }
+    }
+    .form-container{
+        padding-top: 3rem;
     }
      .about-container{
         margin-top: 7rem;

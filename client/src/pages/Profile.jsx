@@ -18,7 +18,7 @@ const Profile = () => {
             <div className='btn-container'>
                 {viewOptions.map((option, index) => {
                     return (
-                        <button key={index} onClick={() => setCurrent(option)} className='btn-choices'>{option}</button>
+                        <button key={index} onClick={() => setCurrent(option)} className={option === current ? 'btn-choices btn-current' : 'btn-choices'}>{option}</button>
                     )
                 })};
             </div>
