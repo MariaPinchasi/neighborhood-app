@@ -29,5 +29,6 @@ export const servicesTypes = [
     { id: 27, name: 'Tailor/Seamstress' },
     { id: 28, name: 'Language Tutor/Translator' },
     { id: 29, name: 'Financial Advisor' },
-    { id: 30, name: 'Real Estate Agent' }
+    { id: 30, name: 'Real Estate Agent' },
+    { id: 31, name: 'Other' }
 ];

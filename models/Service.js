@@ -6,7 +6,7 @@ const ServiceSchema = new mongoose.Schema(
         service: {
             type: String,
             required: [true, 'Please add a service'],
-            enum: ['Electrician', 'Plumber', 'Carpenter', 'Handyman', 'HVAC Technician', 'Appliance Repair Technician', 'Painter', 'Gardener/Landscaper', 'House Cleaner', 'Babysitter/Nanny', 'Pet Sitter/Dog Walker', 'Tutor', 'Personal Trainer', 'Yoga Instructor', 'Massage Therapist', 'Hair Stylist/Barber', 'Makeup Artist', 'Photographer', 'Event Planner', 'Interior Designer', 'Computer Repair Technician', 'Tutor', 'Chef/Caterer', 'Dog Trainer', 'Auto Mechanic', 'Locksmith', 'Tailor/Seamstress', 'Language Tutor/Translator', 'Financial Advisor', 'Real Estate Agent']
+            enum: ['Electrician', 'Plumber', 'Carpenter', 'Handyman', 'HVAC Technician', 'Appliance Repair Technician', 'Painter', 'Gardener/Landscaper', 'House Cleaner', 'Babysitter/Nanny', 'Pet Sitter/Dog Walker', 'Tutor', 'Personal Trainer', 'Yoga Instructor', 'Massage Therapist', 'Hair Stylist/Barber', 'Makeup Artist', 'Photographer', 'Event Planner', 'Interior Designer', 'Computer Repair Technician', 'Tutor', 'Chef/Caterer', 'Dog Trainer', 'Auto Mechanic', 'Locksmith', 'Tailor/Seamstress', 'Language Tutor/Translator', 'Financial Advisor', 'Real Estate Agent', 'Other']
         },
         name: {
             type: String,
